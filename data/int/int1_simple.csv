@@ -1,0 +1,9 @@
+# Description: A very simple problem in the domain of integers.
+# Logic: LIA
+# Solution: res = 2*(x+y)
+x:Int; y:Int; res:Int
+0; 0; 0
+1; 1; 4
+1; 2; 6
+1; 0; 2
+2; 2; 8

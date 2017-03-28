@@ -1,0 +1,11 @@
+.cache-main
+.cache-tests
+.settings
+
+res*.txt
+script.smt2
+
+/bin
+/lib_managed
+/project
+/target

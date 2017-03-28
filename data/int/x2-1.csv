@@ -1,0 +1,10 @@
+# Logic: NIA
+# Solution: res = x*x - 1
+x:Int; res:Int
+-3; 8
+-2; 3
+-1; 0
+0; -1
+1; 0
+2; 3
+3; 8

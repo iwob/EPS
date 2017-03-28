@@ -1,5 +1,6 @@
 package eps.core
 
+import java.nio.file.{Paths, Files}
 import fuel.func.RunExperiment
 import fuel.util.Rng
 import fuel.func.ParallelEval
@@ -154,8 +155,15 @@ class ExperimentEPS(val problem: ProblemDefinition)
   val dataColl = DataCollector(env)
   val eps = EPS(problem, dataColl)
   
+  def checkPysvPath() {
+    val path = env.getString(OptionsEPS.pathToPySV)
+    if (problem.holesDefs.size > 0 && !Files.exists(Paths.get(path)))
+      throw new Exception(s"The main.py file of the pysv framework was not found at ${path}! Check your --eps.pathToPySV option.")
+  }
+  
   def run(): (Op, FitnessEPS) = {
     try {
+      checkPysvPath()
       val finalPop = RunExperiment(eps)
       val bestOfRun = eps.bsf.bestSoFar.get
       printRunConclusion(finalPop.get, bestOfRun)

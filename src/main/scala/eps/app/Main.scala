@@ -12,7 +12,6 @@ object Main {
     val sopts =
       """
       --deleteOutputFile true
-      --outDir results
       --operatorProbs 0.5,0.5
       --tournamentSize 7
       --parEval false

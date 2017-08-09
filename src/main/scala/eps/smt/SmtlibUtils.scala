@@ -1,7 +1,5 @@
 package eps.smt
 
-import swim.DomainWithVars
-import swim.Test
 import swim.tree.Op
 import swim.Grammar
 import eps.core.VarDef
@@ -25,7 +23,7 @@ object SmtlibUtils {
    */
   def getDivSafetyConditions(op: Op): List[String] = {
     def getAssertionNeq0(op: Op): String = {
-      return s"(assert (not (= 0 ${SmtlibUtils.opToSmtlib(op)})))"
+      s"(assert (not (= 0 ${SmtlibUtils.opToSmtlib(op)})))"
     }
     def excludeFromSafetyConds(op: Op): Boolean = op.op.isInstanceOf[Int] || op.op.isInstanceOf[Double]
     def helperDiv(a: Op, b: Op): List[String] = {
@@ -154,11 +152,9 @@ object SmtlibUtils {
   def getNtOfGrammarSymbol(grammar: Grammar, symb: Symbol): Option[Symbol] = {
     var nt: Option[Any] = None
     grammar.allProductions.foreach{ case (k, p) =>
-      val ntCand = p.right.find { r =>
-        r match {
-          case (op: Any, args: Seq[Any]) => op == symb
-          case x: Any => x == symb
-        }
+      val ntCand = p.right.find {
+        case (op: Any, args: Seq[Any]) => op == symb
+        case x: Any => x == symb
       }
       if (ntCand.isDefined)
         nt = Some(k.asInstanceOf[Symbol])

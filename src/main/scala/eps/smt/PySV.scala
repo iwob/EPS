@@ -12,8 +12,8 @@ import swim.tree.Op
  * from the op are generated only once during initialization of the class instance.
  */
 class RunnerPySV(val problem: ProblemDefinition) {
-  val commonParams = PySV.getCommonParams(problem)
-  val pathToPySV = problem.env.getString(OptionsEPS.pathToPySV)
+  val commonParams: Seq[String] = PySV.getCommonParams(problem)
+  val pathToPySV: String = problem.env.getString(OptionsEPS.pathToPySV)
   
   /**
    * Synthesizes contents of the holes in the provided op.
@@ -64,7 +64,7 @@ class RunnerPySV(val problem: ProblemDefinition) {
   }
   
   def getLocalVars(holesNames: Seq[(String, HoleDef)]): List[String] = {
-    (problem.outputVars.map(_.format) ++ holesNames.filter(!_._2.isGrammarDefined).map{ case (id, h) => id+":"+h.tpe})
+    problem.outputVars.map(_.format) ++ holesNames.filter(!_._2.isGrammarDefined).map{ case (id, h) => id+":"+h.tpe}
   }
   
   def getSafetyConditions(op: Op): List[String] = {
@@ -165,9 +165,7 @@ object SolverResult {
     var unsatCore: Option[Seq[String]] = None
     var assignments: Option[Map[String, String]] = None
     var holesContent: Option[Map[String, String]] = None
-    def loadDecision(lines: List[String]): (String, List[String]) = {
-      return (lines.head, lines.tail)
-    }
+    def loadDecision(lines: List[String]): (String, List[String]) = (lines.head, lines.tail)
     def loadModel(decision: String, lines: List[String]): (Option[Map[String, String]], List[String]) = {
       if (decision != SolverResult.SAT)
         (None, lines.tail)

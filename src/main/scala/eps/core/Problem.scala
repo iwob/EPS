@@ -2,12 +2,10 @@ package eps.core
 
 import swim.Test
 import swim.Grammar
-import swim.tree.Op
 import eps.smt.LIA
 import eps.smt.EPSDomain
 import eps.utils.EPSUtils
 import eps.utils.OptionsEPS
-import eps.smt.Holes
 import fuel.util.TRandom
 import eps.smt.NIA
 import eps.smt.CORE
@@ -26,7 +24,7 @@ class VarDef(val name: Symbol, val tpe: String) {
    * Returns string of this variable definition in the format: NAME:TYPE.
    */
   def format(): String = toString()
-  override def toString() = name.name + ":" + tpe
+  override def toString: String = name.name + ":" + tpe
 }
 
 object VarDef {

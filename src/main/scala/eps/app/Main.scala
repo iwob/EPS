@@ -1,10 +1,8 @@
 package eps.app
 
 import fuel.util.Options
-import eps.core.ProblemDefinition
 import eps.core.ExperimentEPS
 import eps.utils.OptionsEPS
-import fuel.util.Rng
 
 
 object Main {
@@ -20,7 +18,7 @@ object Main {
       --populationSize 100
       --maxGenerations 3
       --eps.logic QF_NIA
-      --eps.pathTests data/int/koza1-p.csv
+      --eps.pathTests data/int/x2-1.csv
       --eps.enableHoles true
       --eps.useInputVarsAsTerminals true
       --eps.useConstantProvider false

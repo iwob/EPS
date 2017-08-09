@@ -3,17 +3,15 @@ package eps.core
 import eps.smt.SolverResult
 import eps.utils.EPSUtils
 import eps.smt.Holes
-import eps.smt.PySV
 import eps.utils.OptionsEPS
 import swim.tree.Op
-import eps.smt.SmtlibUtils
 import eps.smt.RunnerPySV
 import eps.smt.HoleDef
 
 
 class FitnessEPS(val value: Int, val solverRes: Option[SolverResult] = None, val evalTime: Option[Double] = None) extends Ordered[FitnessEPS] {
-  override def toString() = value.toString()
-  def wasSolverUsed = solverRes.isDefined
+  override def toString: String = value.toString
+  def wasSolverUsed: Boolean = solverRes.isDefined
   def compare(that: FitnessEPS): Int = that.value compare this.value
 }
 
@@ -96,9 +94,7 @@ object Evaluation {
                             pysv: RunnerPySV): FitnessEPS = {
     val res = pysv.runSynthesis(op, holesNames)
     res.decision match {
-      case SolverResult.SAT => {
-        FitnessEPS(problem.tests.size, Some(res))
-      }
+      case SolverResult.SAT => FitnessEPS(problem.tests.size, Some(res))
       case SolverResult.UNSAT | SolverResult.UNKNOWN | SolverResult.TIMEOUT => FitnessEPS(0, Some(res))
       case _ => throw new Exception(s"Solver docision '${res.decision}': was not recognized!")
     }

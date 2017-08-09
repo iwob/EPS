@@ -18,7 +18,7 @@ class HoleDef(val name: Symbol, val tpe: String, val grammar: String = "") {
    * Returns string of this constant symbol definition in the format: NAME:TYPE.
    */
   def format(): String = toString()
-  override def toString() = name.name + ":" + tpe
+  override def toString: String = name.name + ":" + tpe
 }
 
 object HoleDef {

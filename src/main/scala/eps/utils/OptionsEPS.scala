@@ -83,7 +83,7 @@ object OptionsEPS {
  */
 class OptionInfo(val name: String, val tpe: String = "", val desc: String = "", val default: Option[String] = None,
                  val choice: Set[String] = Set()) {
-  override def toString(): String = {
+  override def toString: String = {
     def textDefault(s: Option[String]) = if (s.isDefined) " (default: " + s.get + ")" else ""
     name.padTo(40, ' ') + tpe.padTo(20, ' ') + desc + textDefault(default) + "\n"
   }

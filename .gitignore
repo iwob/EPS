@@ -1,8 +1,10 @@
 .cache-main
 .cache-tests
 .settings
+.idea
 
 res*.txt
+res*.txt.eps
 script.smt2
 
 /bin

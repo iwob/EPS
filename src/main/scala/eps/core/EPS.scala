@@ -32,7 +32,7 @@ class EPS(problem: ProblemDefinition,
           coll: Collector,
           rng: TRandom,
           ordering: Ordering[FitnessEPS])
-         extends SimpleGP[Seq[Any], Any, FitnessEPS](moves, eval, stop)(env.options, coll, rng, ordering) {
+         extends SimpleGP[FitnessEPS](moves, eval, stop)(env.options, coll, rng, ordering) {
   implicit val options = env.options
   val isSilent = env.getBool(OptionsEPS.silent)
   val optFillHoles = env.getBool(OptionsEPS.fillHoles)

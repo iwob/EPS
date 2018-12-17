@@ -171,9 +171,11 @@ final class TestEvaluation {
     val problem = ProblemDefinition(env)
     val pysv = RunnerPySV(problem)
     val fitSolver = Evaluation.evalHoles(op, problem, pysv)
-    assertEquals("varInt1", fitSolver.solverRes.get.holesContent.get("varInt1")) // Hole remains in the solution.
+    assertEquals(5, fitSolver.value)
     val opFilled = Holes.fillHolesInOp(op, fitSolver, problem)
     assertEquals(false, opFilled.toString().contains("varInt"))
+    val fitNormally = Evaluation.evalNormally(opFilled, problem, doPrint=true)
+    assertEquals(5, fitNormally.value)
   }
   
   @Test def test_eval_issue3() {

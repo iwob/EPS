@@ -269,7 +269,7 @@ class ExperimentEPS(val problem: ProblemDefinition)
       val fitNormalEval = if (!bestFit.wasSolverUsed) bestFit
                           else Evaluation.evalNormally(bestOpFilled, problem)
       
-      // Best found solution and it's fitness are saved under standard FUEL keys:
+      // Best found solution and its fitness are saved under standard FUEL keys:
       // "result.best", "result.best.eval".
       
       // Saving some other best of run information.
